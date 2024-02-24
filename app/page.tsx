@@ -71,8 +71,8 @@ export default async function Page() {
        <div className='grid md:grid-cols-3 xl:grid-cols-4 mt-7  gap-x-2 gap-y-5 fo '>
         { data.map( dat =>{
           return(
-            <Link href={`/${dat.name.common}`}>
-            <div className='lg:max-w-[20vw] ' key={dat.name.official} >
+            <Link href={`/${dat.name.common}`} key={dat.name.official}>
+            <div className='lg:max-w-[20vw] '  >
                     <Image alt='blogs' width={1000} height={1000} src={dat.flags.svg + ""} className=' xl:min-h-[23vh] lg:min-h-[20vh] lg:max-h-[20vh] md:min-h-[20vh] md:max-h-[20vh] xl:max-h-[20vh] min-w-full'/>
                     <div className=" p-3">
                  <div className='font-black py-4'>
