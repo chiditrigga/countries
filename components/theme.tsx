@@ -15,7 +15,7 @@ React.useEffect(()=> {
   }else setTheme('dark')
 },[modes])
  
-console.log(modes)
+
   return (
    
      

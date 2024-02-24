@@ -68,13 +68,13 @@ export default function Page({ params }: { params: { id: string } }) {
                                   <span className='font-semibold'>Top Level Domain:</span> <br />
                                 <span className='font-semibold'>Currencies:</span>  { Object.values(data[0].currencies).map( val => {
                             return(
-                               <span>{val.name + ","}</span> 
+                               <span key={val}>{val.name + ","}</span> 
                             )
                         })} <br />
                                 <span className='font-semibold'>Region:</span>{data[0].region} <br/>
                                 <span className='font-semibold'>Currencies:</span>  {Object.values(data[0].languages).map( val => {
                             return(
-                               <span>{val + ","}</span> 
+                               <span key={val}>{val + ","}</span> 
                             )
                         })}
                             </div>
@@ -84,7 +84,7 @@ export default function Page({ params }: { params: { id: string } }) {
                      <span className='font-semibold me-5'>Border countries:</span>
                       {data[0].borders.length> 0? Object.values(data[0].borders).map( bod => {
                         return (
-                             <button onClick={ ()=> setCurrent('NIGERIA')} className="border-2 shadow-sm border-solid px-8 py-1 me-5">{bod}</button>
+                             <button key={bod} onClick={ ()=> setCurrent('NIGERIA')} className="border-2 shadow-sm border-solid px-8 py-1 me-5">{bod}</button>
                         )
                      }) :"hhh"}
                     
