@@ -102,10 +102,10 @@ export default function Page() {
                 })
                 .map((dat) => {
                   return (
-                    <div className="lg:max-w-[20vw] hover:shadow-2xl hover:shadow-red-900 shadow-md  rounded-lg">
+                    <div key={dat.name.common} className="lg:max-w-[20vw] hover:shadow-2xl hover:shadow-red-900 shadow-md  rounded-lg">
                       <Link
                         href={`/${dat.name.common}`}
-                        key={dat.name.common}
+                        
                       >
                         <Image
                           alt="blogs"
