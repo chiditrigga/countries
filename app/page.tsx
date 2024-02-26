@@ -4,6 +4,7 @@ import Link from "next/link";
 import no1 from "../public/photo-6.png";
 import Image from "next/image";
 import { ModeToggle } from "@/components/theme";
+import Load from '../public/loader.svg'
 
 import { useQuery, useIsFetching } from "@tanstack/react-query";
 import { useState } from "react";
@@ -129,8 +130,10 @@ export default function Page() {
                     </div>
                   );
                 })}
+                
           </div>
         </div>
+        {isPending && <div ><Image className="mx-auto" alt="loading..." src={Load}/></div> }
       </div>
     </>
   );

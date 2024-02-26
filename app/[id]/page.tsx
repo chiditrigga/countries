@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { useQuery, useIsFetching } from "@tanstack/react-query";
+import { ArrowLeft } from "lucide-react";
 
 type CountryData = {
   flags: {
@@ -38,7 +39,7 @@ export default function Page({ params }: { params: { id: string } }) {
       <div className="md:mx-[5vw] my-10 mx-2">
         <Link href={"/"}>
           <button className="border-2 shadow-sm border-solid px-8 py-1 ">
-            Back
+          <span className="flex"> <span><ArrowLeft/></span> <span className="bolder">Back</span>  </span>
           </button>
         </Link>
       </div>
