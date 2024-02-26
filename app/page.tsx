@@ -4,7 +4,7 @@ import Link from "next/link";
 import no1 from "../public/photo-6.png";
 import Image from "next/image";
 import { ModeToggle } from "@/components/theme";
-import Load from '../public/loader.svg'
+import Load from "../public/loader.svg";
 
 import { useQuery, useIsFetching } from "@tanstack/react-query";
 import { useState } from "react";
@@ -27,7 +27,6 @@ export default function Page() {
     isPending,
     error,
     data: countries,
-    isLoading,
   } = useQuery<CountryData[]>({
     queryKey: ["country"],
     queryFn: () =>
@@ -103,11 +102,11 @@ export default function Page() {
                 })
                 .map((dat) => {
                   return (
-                    <div key={dat.name.common} className="lg:max-w-[20vw] hover:shadow-2xl hover:shadow-red-900 shadow-md  rounded-lg">
-                      <Link
-                        href={`/${dat.name.common}`}
-                        
-                      >
+                    <div
+                      key={dat.name.common}
+                      className="lg:max-w-[20vw] hover:shadow-2xl hover:shadow-red-900 shadow-md  rounded-lg"
+                    >
+                      <Link href={`/${dat.name.common}`}>
                         <Image
                           alt="blogs"
                           width={1000}
@@ -130,10 +129,14 @@ export default function Page() {
                     </div>
                   );
                 })}
-                
           </div>
         </div>
-        {isPending && <div ><Image className="mx-auto" alt="loading..." src={Load}/></div> }
+        {isPending && (
+          <div>
+            <Image className="mx-auto" alt="loading..." src={Load} />
+          </div>
+        )}
+        {error && <div>{`An error has occurred: ${error.message}`} </div>}
       </div>
     </>
   );

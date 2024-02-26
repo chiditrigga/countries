@@ -26,7 +26,9 @@ type CountryData = {
 export default function Page({ params }: { params: { id: string } }) {
   const [current, setCurrent] = useState(params.id);
 
-  const { isPending, error, data, isLoading } = useQuery<CountryData[]>({
+  const { isPending, error, data, isLoading, isFetching } = useQuery<
+    CountryData[]
+  >({
     queryKey: ["countryList"],
     queryFn: () =>
       fetch(
@@ -39,11 +41,17 @@ export default function Page({ params }: { params: { id: string } }) {
       <div className="md:mx-[5vw] my-10 mx-2">
         <Link href={"/"}>
           <button className="border-2 shadow-sm border-solid px-8 py-1 ">
-          <span className="flex"> <span><ArrowLeft/></span> <span className="bolder">Back</span>  </span>
+            <span className="flex">
+              {" "}
+              <span>
+                <ArrowLeft />
+              </span>{" "}
+              <span className="bolder">Back</span>{" "}
+            </span>
           </button>
         </Link>
       </div>
-      {data ? (
+      {data && isFetching == false && (
         <div className=" md:grid grid-cols-2 gap-x-10 md:mx-[5vw] mx-2">
           <div>
             <Image
@@ -103,28 +111,33 @@ export default function Page({ params }: { params: { id: string } }) {
             </div>
           </div>
         </div>
-      ) : (
-        <div className=" md:grid grid-cols-2 gap-x-10 md:mx-[5vw] mx-2 animate-pulse">
-          <div>
-            <div className="h-80 bg-gray-200 rounded-md"></div>
-          </div>
-          <div className="h-full grid content-center ">
-            <span className="font-black bg-gray-200 w-[160px] my-2 h-10 rounded-md"></span>{" "}
-            <br />
-            <div className="md:flex justify-between">
-              <div className="w-full bg-gray-200">
-                <span className="font-semibold  bg-slate-200  "></span> <br />
-                <span className="font-semibold bg-gray-200"></span> <br />
-                <span className="font-semibold bg-gray-200"></span>
-                <br />
-                <span className="font-semibold bg-gray-200"></span> <br />
-                <span className="font-semibold bg-gray-200"></span>
-              </div>
+      )}
+      {isFetching && (
+        <div>
+          {" "}
+          <div className=" md:grid grid-cols-2 gap-x-10 md:mx-[5vw] mx-2 animate-pulse">
+            <div>
+              <div className="h-80 bg-gray-200 rounded-md"></div>
             </div>
-            <div className="py-8 gap-11"></div>
+            <div className="h-full grid content-center ">
+              <span className="font-black bg-gray-200 w-[160px] my-2 h-10 rounded-md"></span>{" "}
+              <br />
+              <div className="md:flex justify-between">
+                <div className="w-full bg-gray-200">
+                  <span className="font-semibold  bg-slate-200  "></span> <br />
+                  <span className="font-semibold bg-gray-200"></span> <br />
+                  <span className="font-semibold bg-gray-200"></span>
+                  <br />
+                  <span className="font-semibold bg-gray-200"></span> <br />
+                  <span className="font-semibold bg-gray-200"></span>
+                </div>
+              </div>
+              <div className="py-8 gap-11"></div>
+            </div>
           </div>
         </div>
       )}
+      {error && <div>{`An error has occurred: ${error.message}`} </div>}
     </div>
   );
 }
